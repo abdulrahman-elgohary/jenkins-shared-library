@@ -1,3 +1,3 @@
 def call() {
-    sh './gradlew build' --stacktrace
+    sh './gradlew build --stacktrace'
 }
