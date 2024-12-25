@@ -9,6 +9,7 @@ def call(Map envVars) {
         sh """
         echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
         docker push ${envVars.docker_hub_username}/${envVars.imageName}:${envVars.buildNumber}
+        docker rmi ${envVars.docker_hub_username}/${envVars.imageName}:${envVars.buildNumber}
         """
     }
     }
