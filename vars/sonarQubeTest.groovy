@@ -4,7 +4,7 @@ def call(Map envVars) {
     withSonarQubeEnv(envVars.sonarQubeServer) {
             sh '''
             ./gradlew clean build
-            ./gradlew sonarqube
+            ./gradlew sonar
             '''
     }
 }
