@@ -1,4 +1,7 @@
 def call() {
-    sh 'chmod +x ./gradlew'
-    sh './gradlew test'
+    echo 'Running unit tests...'
+    dir('FinalProjectCode') {
+        sh 'chmod +x ./gradlew'
+        sh './gradlew test'
+    }
 }
