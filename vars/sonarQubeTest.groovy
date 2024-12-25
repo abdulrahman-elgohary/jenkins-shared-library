@@ -3,6 +3,7 @@ def call(Map envVars) {
     echo 'Running SonarQube analysis...'
     withSonarQubeEnv(envVars.sonarQubeServer) {
             sh '''
+            chmod +x 
             ./gradlew sonarqube
             '''
     }
