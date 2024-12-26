@@ -1,18 +1,26 @@
 def call(Map envVars) {
     echo 'Pushing the new deployment file to Github...'
-    withCredentials([usernamePassword(credentialsId: envVars.registryCredentials, usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
+    withCredentials([usernamePassword(credentialsId: envVars.registryCredentials, usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
         sh """
-            git checkout main
-
+            # Configure git
             git config --global user.email "${envVars.githubEmail}"
             git config --global user.name "${envVars.githubUsername}"
             
-            # Update the remote URL to include credentials
-            git remote set-url origin https://github.com/${envVars.githubUsername}/${envVars.repoName}.git
+            # Stash any changes first
+            git stash
             
+            # Checkout main branch
+            git checkout main
+            
+            # Pop the stashed changes
+            git stash pop
+            
+            # Add and commit changes
             git add .
             git commit -m "Update Deployment File with new Image"
-            git push origin main
+            
+            # Push to main with credentials explicitly provided
+            git push https://github.com/${envVars.githubUsername}/${envVars.repoName}.git main
         """
     }
 }
