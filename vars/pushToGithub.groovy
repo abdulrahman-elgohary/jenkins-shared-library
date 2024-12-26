@@ -8,9 +8,9 @@ def call(Map envVars) {
             # Update the remote URL to include credentials
             git remote set-url origin https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/${envVars.githubUsername}/${envVars.repoName}.git
             
-            git switch main
             git add .
             git commit -m "Update Deployment File with new Image"
+            git switch main
             git push origin main
         """
     }
