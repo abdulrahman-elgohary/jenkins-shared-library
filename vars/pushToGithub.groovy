@@ -4,9 +4,9 @@ def call(Map envVars) {
         sh """
         git config --global user.email "enVars.githubEmail"
         git config --global user.name "enVars.githubUsername"
+        git switch main
         git add .
         git commit -m "Update Deployment File with new Image"
-        git switch main
         git push origin main
         """
     }
