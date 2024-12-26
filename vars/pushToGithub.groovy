@@ -6,7 +6,7 @@ def call(Map envVars) {
             git config --global user.name "${envVars.githubUsername}"
             
             # Update the remote URL to include credentials
-            git remote set-url origin https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/${envVars.githubUsername}/${envVars.repoName}.git
+            git remote set-url origin https://github.com/${envVars.githubUsername}/${envVars.repoName}.git
             
             git add .
             git commit -m "Update Deployment File with new Image"
