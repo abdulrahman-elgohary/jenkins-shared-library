@@ -2,6 +2,8 @@ def call(Map envVars) {
     echo 'Pushing the new deployment file to Github...'
     withCredentials([usernamePassword(credentialsId: envVars.registryCredentials, usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
         sh """
+            git checkout main
+
             git config --global user.email "${envVars.githubEmail}"
             git config --global user.name "${envVars.githubUsername}"
             
@@ -10,7 +12,6 @@ def call(Map envVars) {
             
             git add .
             git commit -m "Update Deployment File with new Image"
-            git switch main
             git push origin main
         """
     }
