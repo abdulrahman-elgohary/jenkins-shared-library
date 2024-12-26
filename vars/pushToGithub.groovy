@@ -4,6 +4,7 @@ def call(Map envVars) {
         sh """
         git add .
         git commit -m "Update Deployment File with new Image"
+        git switch main
         git push origin main
         """
     }
