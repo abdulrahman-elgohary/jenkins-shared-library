@@ -5,14 +5,10 @@ def call(Map envVars) {
     git remote set-url origin ${envVars.gitRepo}
 
     # Ensure we're on the correct branch
-    git fetch origin
+    git pull origin ${envVars.branch}
     git checkout ${envVars.branch}
     
-    # Pull the latest changes with rebase to avoid conflicts
-    git pull --rebase origin ${envVars.branch}
     
-    # Apply any stashed changes if needed
-    git stash pop || echo "No stash to pop"
 
     # Stage and commit changes
     git add .
