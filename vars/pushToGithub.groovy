@@ -6,7 +6,7 @@ def call(Map envVars) {
     git checkout ${envVars.branch}
     git pull origin ${envVars.branch}
     git add .
-    git commit -m "Automated commit by Jenkins" || echo "No changes to commit"
+    git commit -m "Automated commit by Jenkins [ci skip]" || echo "No changes to commit"
     git push origin ${envVars.branch}
     """
 }
