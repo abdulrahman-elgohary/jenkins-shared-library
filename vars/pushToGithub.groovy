@@ -3,7 +3,7 @@ def call(Map envVars) {
     git config user.name "${envVars.githubUsername}"
     git config user.email "${envVars.githubEmail}"
     git remote set-url origin ${envVars.gitRepo}
-    git fetch origin ${envVars.branch}
+    git stash
     git checkout ${envVars.branch}
     git pull --rebase origin ${envVars.branch}
     git add .
