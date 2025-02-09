@@ -4,8 +4,14 @@ def call(Map envVars) {
     git config user.email "${envVars.githubEmail}"
     git remote set-url origin ${envVars.gitRepo}
 
-    # Ensure we're on the correct branch
-    git pull origin ${envVars.branch}
+    # Fetch latest changes
+    git fetch origin
+
+    # Switch to the correct branch
+    git checkout ${envVars.branch}
+    
+    # Pull latest changes and rebase to avoid conflicts
+    git pull --rebase origin ${envVars.branch}
     
     # Stage and commit changes
     git add .
