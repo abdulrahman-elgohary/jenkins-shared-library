@@ -6,10 +6,7 @@ def call(Map envVars) {
 
     # Ensure we're on the correct branch
     git pull origin ${envVars.branch}
-    git checkout ${envVars.branch}
     
-    
-
     # Stage and commit changes
     git add .
     git commit -m "Automated commit by Jenkins" || echo "No changes to commit"
